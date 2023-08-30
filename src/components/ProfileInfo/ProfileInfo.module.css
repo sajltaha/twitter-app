@@ -1,0 +1,23 @@
+.profile_info {
+  width: 100%;
+  padding: 0 15px 15px;
+  background: white;
+  border-left: 2px solid #ebeef0;
+  border-right: 2px solid #ebeef0;
+  border-bottom: 2px solid #ebeef0;
+}
+
+.text_style_one {
+  font-weight: 700;
+  font-size: 21px;
+}
+
+.text_style_two {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.text_style_three {
+  font-weight: 700;
+  font-size: 16px;
+}
