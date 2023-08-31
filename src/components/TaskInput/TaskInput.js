@@ -1,12 +1,37 @@
+import { usePosts } from "../../store/usePosts";
 import style from "./TaskInput.module.css";
 
 export default function TaskInput({
   textareaTaskRef,
   textareaValue,
-  handleTextareaChange,
   gapActive,
-  sharePost,
+  setTextareaValue,
+  setGapActive,
 }) {
+  const { push } = usePosts();
+
+  const sharePost = () => {
+    setTextareaValue("");
+    setGapActive(true);
+    const formattedTime = `${new Date()
+      .getHours()
+      .toString()
+      .padStart(2, "0")}:${new Date()
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}`;
+    push({
+      publishedTime: formattedTime,
+      postText: textareaValue,
+      postID: Math.random().toString(36),
+    });
+  };
+
+  const handleTextareaChange = (event) => {
+    const { value } = event.target;
+    setTextareaValue(value);
+  };
+
   return (
     <div className={style.task_input}>
       <img src="images/avatar.jpeg" alt="user-avatar" />

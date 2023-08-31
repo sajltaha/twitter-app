@@ -9,17 +9,12 @@ export default function HomePage() {
   const textareaPostRef = useRef(null);
   const [textareaValue, setTextareaValue] = useState("");
   const [gapActive, setGapActive] = useState(false);
-  const { push, posts } = usePosts();
+  const { posts } = usePosts();
 
   useEffect(() => {
+    console.log(posts);
     adjustTextareaHeight();
-  }, [posts]);
-
-  const handleTextareaChange = (event) => {
-    const { value } = event.target;
-    setTextareaValue(value);
-    adjustTextareaHeight();
-  };
+  }, [posts, textareaValue]);
 
   const adjustTextareaHeight = () => {
     if (textareaTaskRef.current) {
@@ -33,31 +28,14 @@ export default function HomePage() {
     }
   };
 
-  const sharePost = () => {
-    setTextareaValue("");
-    setGapActive(true);
-    const formattedTime = `${new Date()
-      .getHours()
-      .toString()
-      .padStart(2, "0")}:${new Date()
-      .getMinutes()
-      .toString()
-      .padStart(2, "0")}`;
-    push({
-      publishedTime: formattedTime,
-      postText: textareaValue,
-      postID: Math.random().toString(36).substr(2, 9),
-    });
-  };
-
   return (
     <div style={{ width: "100%" }}>
       <TaskInput
         textareaTaskRef={textareaTaskRef}
-        handleTextareaChange={handleTextareaChange}
-        sharePost={sharePost}
         textareaValue={textareaValue}
         gapActive={gapActive}
+        setGapActive={setGapActive}
+        setTextareaValue={setTextareaValue}
       />
       <div
         style={{ display: gapActive ? "block" : "none" }}

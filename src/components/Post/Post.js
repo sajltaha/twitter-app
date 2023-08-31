@@ -1,6 +1,6 @@
-import style from './Post.module.css'
+import style from "./Post.module.css";
 
-export default function Post({textareaPostRef, post}) {
+export default function Post({ textareaPostRef, post }) {
   return (
     <div className={style.post}>
       <img src="images/avatar.jpeg" alt="user-avatar" />
